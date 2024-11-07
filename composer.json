@@ -1,5 +1,5 @@
 {
-    "name": "bref/bref",
+    "name": "kaxmedia/bref",
     "license": "MIT",
     "type": "project",
     "description": "Bref is a framework to write and deploy serverless PHP applications on AWS Lambda.",
@@ -61,6 +61,13 @@
             "vendor/bin/phpunit --testsuite small"
         ]
     },
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "git@github.com:kaxmedia/bref.git"
+        }
+    ],
+
     "scripts-descriptions": {
         "test": "Run the test suite",
         "code-style": "Run code style checks using PHP_CodeSniffer",
