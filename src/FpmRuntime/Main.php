@@ -15,6 +15,10 @@ class Main
 {
     public static function run(): void
     {
+        $brefInitStartTime = microtime(true);
+
+        echo "BREF: initialising " . date('h:i:s', (int) $brefInitStartTime) . PHP_EOL;
+
         // In the FPM runtime process (our process) we want to log all errors and warnings
         ini_set('display_errors', '1');
         error_reporting(E_ALL);
@@ -41,9 +45,16 @@ class Main
 
         Bref::events()->afterStartup();
 
+        $brefEndInitTime = microtime(true);
+        $round = round($brefInitStartTime - $brefEndInitTime, 4);
+        echo "BREF: initialised $round" . PHP_EOL;
+
         /** @phpstan-ignore-next-line */
         while (true) {
             $lambdaRuntime->processNextEvent($phpFpm);
+            $brefEndEventTime = microtime(true);
+            $round = round($brefInitStartTime - $brefEndEventTime, 4);
+            echo "BREF: Ended Event $round" . PHP_EOL;
         }
     }
 }
