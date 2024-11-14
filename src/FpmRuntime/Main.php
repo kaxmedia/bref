@@ -46,14 +46,14 @@ class Main
         Bref::events()->afterStartup();
 
         $brefEndInitTime = microtime(true);
-        $round = round($brefInitStartTime - $brefEndInitTime, 4);
+        $round = round($brefEndInitTime - $brefInitStartTime, 4);
         echo "BREF: initialised $round" . PHP_EOL;
 
         /** @phpstan-ignore-next-line */
         while (true) {
             $lambdaRuntime->processNextEvent($phpFpm);
             $brefEndEventTime = microtime(true);
-            $round = round($brefInitStartTime - $brefEndEventTime, 4);
+            $round = round($brefEndEventTime - $brefInitStartTime, 4);
             echo "BREF: Ended Event $round" . PHP_EOL;
         }
     }
